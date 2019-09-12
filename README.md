@@ -7,18 +7,25 @@ They took the teleporter, but it must be around here somewhere. You are armed wi
 
 ## VR Controls
 Press the touch-sensitive button to move
+
 OR Select a nearby point to teleport there
+
 Press the trigger to shoot
+
 Move next to objects to pick up / interact
 
 ## Desktop Controls
 Arrow keys to move (or WASD)
+
 Left mouse click to shoot
+
 Walk up to objects to pick up / interact
 
 ## Browsers / Devices
 Tested in:
+
 Oculus Browser and Firefox Reality on Oculus Go
+
 Chrome and Firefox on Desktop
 
 For best performance run in Oculus Browser
