@@ -1,0 +1,15 @@
+{
+  "name": "Get Back From Robot City",
+  "version": "1.0.0",
+  "author": "Kevin Etchells",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-minify-inline": "^1.1.0",
+    "gulp-modify-file": "^1.0.1",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-zip": "^4.2.0"
+  },
+  "devDependencies": {}
+}

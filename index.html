@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Get Back From Robot City</title>
+        <script src="https://js13kgames.com/webxr-src/aframe.js"></script>
+        <!--<script src="aframe.js"></script>-->
+        <script src="aframe-geometry-merger-component.js" inline></script>
+        <script src="components.js" inline></script>
+        <script src="robot.js" inline></script>
+        <script src="stars.js" inline></script>
+        <script src="generate-level.js" inline></script>
+        <script src="audio.js" inline></script>
+    </head>
+    <body>
+
+        <a-scene star-system="count: 250" background="color: #057" fog="type: exponential; density: 0.1; color: #10454A" audio generate-level>
+
+            <a-assets>
+                <canvas id="groundmat"></canvas>
+                <canvas id="skyscraper"></canvas>
+                <canvas id="medikit"></canvas>
+                <canvas id="welcomescreen"></canvas>
+                <canvas id="hud"></canvas>
+                <canvas id="mat-gateway"></canvas>
+                <canvas id="mat-computer"></canvas>
+                <canvas id="mat-endgame"></canvas>
+                <canvas id="mat-playagain"></canvas>
+                <canvas id="mat-credits"></canvas>
+                <canvas id="mat-teleport-symbol"></canvas>
+                
+                <audio id="audio-robot-laser" src="" crossorigin="anonymous"></audio>
+                <audio id="audio-shoot-robot" src="" crossorigin="anonymous"></audio>
+                
+                <a-mixin id="laser-mtl" material="color: red; opacity: 0.4; shader: flat"></a-mixin>
+                <a-mixin id="metal" material="color: #aaa; emissive: #333"></a-mixin>
+                <a-mixin id="teleporter" material="color: #888; metalness: 1"></a-mixin>
+                <a-mixin id="robot-eyes" material="color: #f00; fog: false"></a-mixin>
+                <a-mixin id="robot-ring" geometry="primitive: circle; radius: 0.6; segments: 8" material="shader: flat; color: #699; transparent: true; opacity: 0.3; fog: false" rotation="270 0 0" position="0 0.1 0"></a-mixin>
+                <a-mixin id="windows" geometry="primitive: plane; buffer: false" material="shader: flat; color: #699; fog: false"></a-mixin>
+                <a-mixin id="settings-control" geometry="primitive: plane" material="shader: flat; color: yellow" scale="0.15 0.15 0.15"></a-mixin>
+            </a-assets>
+            
+            <a-entity id="game"></a-entity>
+            
+            <a-plane id="ground" class="interact" rotation="-90 0 0" width="80" height="80" material="src: #groundmat; roughness: 1; color: #ddd; repeat: 9 9"></a-plane>
+
+            <a-entity light="type: ambient; intensity: 0.2;"></a-entity>
+            <a-entity light="type: directional; intensity: 0.5; color: #078" position="50 30 50"></a-entity>
+            
+            <a-entity id="camera" key-controls player>
+                <a-camera wasd-controls="enabled: false;" look-controls="pointerLockEnabled: true">
+                    <a-entity id="player-shot" geometry="primitive: plane; width: 6; height: 3" position="0 0 -0.5" material="color: #f00; shader: flat; opacity: 0.3" visible="false"></a-entity>
+                    <a-entity id="cursor" cursor="fuse: false" raycaster="objects: .interact; far: 40" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.034; segments-theta: 12; segments-phi: 1" material="color: black; shader: flat">
+                        <a-entity class="line" line="start: -0.05 0 0; end: -0.006 0 0; color: black" line__2="start: 0.05 0 0; end: 0.006 0 0; color: black"></a-entity>
+                        <a-entity class="line" line="start: 0 -0.05 0; end: 0 -0.006 0; color: black" line__2="start: 0 0.05 0; end: 0 0.006 0; color: black"></a-entity>
+                    </a-entity>
+                    <a-entity geometry="primitive: plane" id="hud-display" scale="0.008 0.004 0" material="src: #hud; shader: flat; transparent: true" position="0 0.006 -0.01"></a-entity>
+                </a-camera>
+                <a-entity id="controller" laser-controls raycaster="objects: .interact; far: 50" alt-movement>
+                    <!--<a-entity id="teleport" raycaster="objects: .ground; far: 10"></a-entity>-->
+                    <a-entity id="teleport-symbol" geometry="primitive: plane; width: 0.15; height: 0.15" position="0 0 -0.5" visible="false" material="src: #mat-teleport-symbol; transparent: true; shader: flat"></a-entity>
+                </a-entity>
+            </a-entity>
+
+        </a-scene>
+            
+        <!--
+            // TO LOAD INSPECTOR:
+            //postMessage('INJECT_AFRAME_INSPECTOR', '*')
+        -->
+
+        <script src="textures.js" inline></script>
+        <script src="main.js" inline></script>
+
+    </body>
+</html>
